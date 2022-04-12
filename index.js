@@ -23,6 +23,7 @@ const typeDefs = gql`
   type Mutation {
     addBook(title: String, author: String): Book
     updateBookById(bookId: ID, title: String, author: String): Book
+    deleteBookById(bookId: ID): Book
   }
 `;
 
@@ -63,6 +64,10 @@ const resolvers = {
       books[indexToUpdate].title = args.title;
       books[indexToUpdate].author = args.author;
       return books[indexToUpdate];
+    },
+    deleteBookById: (_, args) => {
+      // console.log(books.filter((book) => book.id !== args.bookId));
+      return books.filter((book) => book.id !== args.bookId);
     },
   },
 };
